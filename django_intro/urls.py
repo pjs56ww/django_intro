@@ -25,8 +25,10 @@ from pages import views
 # 사용자가 들어올 경로를 설정해주는 것
 urlpatterns = [ # 작성하고자 하는 path를 위부터 작성
     # path('사용자가 접속하는 경로', )
-    
-    path('dinner/', views.dinner),
+    path('times/<int:num1>/<int:num2>/', views.times),
+    path('greeting/<str:name>/', views.greeting),
+    path('image/', views.image),
+    path('dinner/<str:name>/', views.dinner),
     path('introduce/', views.introduce),
     path('index/', views.index),
     path('admin/', admin.site.urls),
@@ -35,3 +37,16 @@ urlpatterns = [ # 작성하고자 하는 path를 위부터 작성
 
 #localhost: 8000/introduce/
 # introduce => render => introduce.html
+
+
+# path: image/
+# template: image.html
+# view: def image(request):
+# imege url을 context에 담아서 image.html 에 전달한다.
+
+# template: image.html // 전달받은 image.url을 img 태그 src 속성에 담아서 랜덤 이미지를 보여준다.
+
+
+# url: times/
+# Variable routing 으로 숫자 2개를 각각 'num1', 'num2' 이름으로 받는다.
+# view: 두 숫자를 곱한 result 변수와, num1, num2를 context 에 담아서 times.html 에 전달한다.
