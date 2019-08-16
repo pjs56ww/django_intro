@@ -1,0 +1,16 @@
+{% load static %} <!-- static 파일을 사용하기 위해서는 반드시 필요 -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Static Example</title>
+  <link rel="stylesheet" href="{% static 'style_sheets/example.css' %}">
+</head>
+<body>
+  <h1>STATIC 파일 실습</h1>
+  <img src="{% static '고양이.jpg' %}" alt="고양이">
+</body>
+</html>

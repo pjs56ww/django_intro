@@ -25,11 +25,16 @@ from pages import views
 # 사용자가 들어올 경로를 설정해주는 것
 urlpatterns = [ # 작성하고자 하는 path를 위부터 작성
     # path('사용자가 접속하는 경로', )
+    path('static_example/', views.static_example),
+
     path('lotto_result/', views.lotto_result),
     path('lotto_pick/', views.lotto_pick),
+
     path('result/', views.result),
     path('search/', views.search),
+
     path('lotto/', views.lotto),
+    
     path('isitBirthday/', views.isitBirthday),
     path('student/<str:name>/', views.student),
     path('info/', views.info),
