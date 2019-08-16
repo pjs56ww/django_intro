@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>template language</title>
+</head>
+<body>
+  <h1>Template Language</h1>
+  <hr>
+
+  <h2>1. 반복문</h2>
+  {% for menu in menus %} {% comment %} logic 을 작성할 수 있도록 만드는 공간 {% endcomment %}
+  <p>{{ menu }}</p>
+  {% endfor %}
+  <hr>
+  {% comment %}
+  {{ forloop }} django Template Langage 에서 자동으로 생기는 객체
+  {% endcomment %}
+  {% for menu in menus %}
+  <p>{{ forloop.counter0 }}. {{ menu }}</p>
+  {% endfor %}
+  <hr>
+
+  {% for user in empty_list %}
+  <p>{{ user }}</p>
+  {% empty %}
+  <p>현재 가입한 유저가 없습니다.</p>
+  {% endfor %}
+  <hr>
+
+  <h2>2. 조건문</h2>
+  {% if '짜장면' in menus %}
+  <p>짜장면에는 고추가루지!</p>
+  {% endif %}
+  <hr>
+
+  {% for menu in menus %}
+  <p>{{ forloop.counter }}번째 도는 중...</p>
+  {% if forloop.first %}
+  <p>{{ menu }} + 고춧가루</p>
+
+  {% else %}
+  <p>{{ menu }}</p>
+  {% endif %}
+  {% endfor %}
+
+  <hr>
+
+  <h2>3. length filter 활용</h2>
+  {% for message in messages %}
+  {% if message|length > 5 %}
+  <p>{{ message }}, 글자가 너무 길어요.</p>
+  {% else %}
+  <p>{{ message }}, {{ message|length }}</p>
+  {% endif %}
+
+  {% endfor %}
+  <hr>
+
+  <h2>4. Lorem ipsum</h2>
+  {% lorem %}
+  <hr>
+
+  {% lorem 3 w%}
+
+  {% lorem 4 w random %}
+
+  {% lorem 2 p random %}
+  {{ lorem }}
+
+  <hr>
+
+  <h2>5. 글자 수 제한(truncate)</h2>
+
+  <p>{{ my_sentence|truncatewords:3 }}</p> <!-- 단어 단위로 제한(이 주석 안에서는 장고 탬플릿 남기지 않기) -->
+  <p>{{ my_sentence|truncatechars:3 }}</p> <!-- 문자 단위로 제한 (3번째는 포함x) -->
+  <p>{{ my_sentence|truncatechars:10 }}</p> <!-- 문자 단위로 제한 (10번째는 포함x) -->
+  <hr>
+
+  <h2>6. 글자 관련 필터</h2>
+  <p>{{ 'abc'|length }}</p>
+  <p>{{ 'ABC'|lower }}</p>
+  <p>{{ my_sentence|title }}</p>
+  <p>{{ 'abc def'|capfirst }}</p>
+  <p>{{ menus|random }}</p>
+
+  <hr>
+
+  <h2>7. 연산</h2> <!-- 연산은 python 영역이기 때문에 여기서 쓰는 것은 좋은 방법이 아님 -->
+  <p>{{ 4|add:6 }}</p>
+  <hr>
+
+  {% comment%}
+    {% now %} 가 내장되어 있다.
+  {% endcomment %}
+  <h2>8. 날짜표현</h2> <!-- 중요! -->
+  <p>{{ datetimenow }}</p>
+  <p>{% now "DATE_TIME_FORMAT" %}</p>
+  <p>{% now "SHORT_DATETIME_FORMAT" %}</p>
+  <p>{% now "DATE_FORMAT" %}</p>
+  <p>{% now "SHORT_DATE_FORMAT" %}</p>
+  <P>{% now "Y년 m월 d일 (D) h:i" %}</P>
+  <hr>
+  {% now "Y" as current_year %}
+  <p> Copyright {{ current_year }}</p>
+  <hr>
+  {{ datetimenow|date:"DATE_FORMAT" }}
+
+  <h2>9. 기타</h2>
+  <p>{{ "google.com"|urlize }}</p>
+
+  <hr>
+  
+</body>
+</html>

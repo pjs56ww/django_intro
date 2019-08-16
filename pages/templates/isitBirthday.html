@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>is it my birthday?</title>
+</head>
+<body>
+  {% now "m" as current_month %}
+  {% now "d" as current_day %} 
+  
+  {% if month == '04' and day == '13' %}
+    <h1>{% now "m월 d일" %}은 박재성의 생일입니다.</h1>
+  {% else %}
+    <h1>{% now "m월 d일" %}은 박재성의 생일이 아닙니다.</h1>
+  {% endif %}
+</body>
+</html>

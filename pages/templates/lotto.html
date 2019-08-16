@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lotto</title>
+</head>
+<body>
+  {% for i in lotto %}
+    {% if i in real_lotto %}
+      <p>{{ i }}번 o</p>
+    {% else %}
+      <p>{{ i }}번 x</p>
+    {% endif %}
+  {% endfor %}
+  <h1>컴식이가 뽑은 로또 번호는 : {{lotto}}</h1>
+  <h1>당첨 번호는 : {{real_lotto}}</h1>
+  {% if lotto == real_lotto %}
+  <p>퇴사 가즈아!!!</p>
+  {% else %}
+  <p>야근 가즈아!!!</p>
+  {% endif %}
+    
+</body>
+</html>

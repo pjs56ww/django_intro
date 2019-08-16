@@ -1,6 +1,8 @@
 # pages/views.py
 from django.shortcuts import render
+from datetime import datetime
 import random
+
 
 # Create your views here.
 
@@ -54,3 +56,50 @@ def times(request, num1, num2):
         'num2': num2,
     }
     return render(request, 'times.html', context)
+
+def template_language(request):
+    menus = ['짜장면', '탕수육', '짬뽕', '양장피']
+    my_sentence = 'Life is short, you need python.'
+    messages = ['apple', 'banana', 'mango', 'cucumber']
+    datetimenow = datetime.now()
+    empty_list = []
+    context = {
+        'menus': menus,
+        'my_sentence': my_sentence,
+        'messages': messages,
+        'empty_list': empty_list,
+        'datetimenow': datetimenow,
+    }
+    return render(request, 'template_language.html', context)
+
+
+def info(request):
+
+    return render(request, 'info.html')
+
+
+def student(request, name):
+    context = {
+        'name': name
+    }
+    return render(request, 'student.html', context)    
+
+
+def isitBirthday(request):
+    return render(request, 'isitBirthday.html', context)
+
+
+def lotto(request):
+    real_lotto = [21, 25, 30, 32, 40 ,42]
+    lotto = []
+    for i in range(6):
+        lotto = lotto + [random.randrange(1, 46)]
+    lotto = sorted(lotto)
+    number = [0, 1, 2, 3, 4, 5]
+    context = {
+        'real_lotto': real_lotto,
+        'lotto': lotto,
+        'numbers': number
+    }
+
+    return render(request, 'lotto.html', context)
