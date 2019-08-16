@@ -95,11 +95,45 @@ def lotto(request):
     for i in range(6):
         lotto = lotto + [random.randrange(1, 46)]
     lotto = sorted(lotto)
-    number = [0, 1, 2, 3, 4, 5]
     context = {
         'real_lotto': real_lotto,
         'lotto': lotto,
-        'numbers': number
     }
 
     return render(request, 'lotto.html', context)
+
+
+def search(request):
+    return render(request, 'search.html')
+
+
+def result(request):
+    query = request.GET.get('query')
+    category = request.GET.get('categories')
+    context = {
+        'query': query,
+        'category': category
+    }
+    return render(request, 'result.html', context)
+
+
+def lotto_pick(request):
+    
+    return render(request, 'lotto_pick.html')
+
+def lotto_result(request):
+    lotto_num = list(map(int, request.GET.get('lotto_number').split()))
+    lotto_870 = [21, 25, 30, 32, 40, 42]
+    cnt = 7
+    for i in lotto_num:
+        if i in lotto_870:
+            cnt -= 1
+
+    
+    context = {
+        'lotto_num': lotto_num,
+        'lotto_870': lotto_870,
+        'rank': cnt,
+    }
+    return render(request, 'lotto_result.html', context)
+
